@@ -1,4 +1,3 @@
-import 'styles/globals.css'
 import { MantineProvider } from "@mantine/core";
 import Shell from 'components/Shell';
 

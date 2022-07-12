@@ -1,15 +1,18 @@
 import { MantineProvider } from "@mantine/core";
+import { UserProvider } from "@auth0/nextjs-auth0";
 import Shell from 'components/Shell';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <MantineProvider
+    <UserProvider>
+      <MantineProvider
 
-    >
-      <Shell>
-        <Component {...pageProps} />
-      </Shell>
-    </MantineProvider>
+      >
+        <Shell>
+          <Component {...pageProps} />
+        </Shell>
+      </MantineProvider>
+    </UserProvider>
   )
 }
 

@@ -1,14 +1,22 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from 'styles/Home.module.css'
+import { Container, Card, Stack } from '@mantine/core'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
         <title>Shortiezzz</title>
       </Head>
-      <h1>Welcome to Shortiezzz</h1>
-    </div>
+      <Card
+        withBorder
+      >
+        <Stack align="center">
+          <h1>Welcome to Shortiezzz</h1>
+          <p>
+            Shortiezzz is a url shortening app that blah, blah, yak, yak, drivel, drivel, drivel.
+          </p>
+        </Stack>
+      </Card>
+    </Container>
   )
 }

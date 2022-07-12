@@ -3,7 +3,9 @@ import Shell from 'components/Shell';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <MantineProvider>
+    <MantineProvider
+
+    >
       <Shell>
         <Component {...pageProps} />
       </Shell>

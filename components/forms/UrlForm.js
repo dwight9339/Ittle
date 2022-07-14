@@ -1,12 +1,14 @@
 import {
   TextInput,
   Card,
-  Button
+  Button,
+  Group
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
+import axios from "axios";
 
-export default ({ urlRec }) => {
+export default ({ urlRec, closeModal }) => {
   const form = useForm({
     initialValues: urlRec
       ? {
@@ -14,17 +16,27 @@ export default ({ urlRec }) => {
         redirect_url: urlRec.redirect_url,
         start_date: urlRec.start_date,
         end_date: urlRec.end_date
-      } : {},
-    validate: ({
-      start_date
-    }) => ({
-      end_date: (date) => date > start_date
-    })
+      } : {
+        name: "",
+        redirect_url: "",
+        start_date: "",
+        end_date: ""
+      },
+    // validate: ({
+    //   start_date
+    // }) => ({
+    //   end_date: (date) => date > start_date
+    // })
   });
 
   return (
     <Card>
-      <form>
+      <form
+        onSubmit={form.onSubmit(async (values) => {
+          axios.post("/api/create-url", values);
+          closeModal();
+        })}
+      >
         <TextInput
           label="Name"
           value={form.values.name}
@@ -52,11 +64,13 @@ export default ({ urlRec }) => {
           onChange={(date) => {
             form.setFieldValue("end_date", date);
           }}
-          disabled={form.values.start_date}
+          disabled={!form.values.start_date}
         />
-        <Button type="submit">
-          Submit
-        </Button>
+        <Group>
+          <Button type="submit">
+            Submit
+          </Button> 
+        </Group>
       </form>
     </Card>
   )

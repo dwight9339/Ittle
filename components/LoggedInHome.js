@@ -12,16 +12,15 @@ export default () => {
 
   const [urlFormOpen, setUrlFormOpen] = useState(false);
 
-  // const toggleUrlForm = setUrlFormOpen((isOpen) => !isOpen);
-
-
   return (
     <div>
       <Modal
        opened={urlFormOpen}
        onClose={() => setUrlFormOpen(false)}
       >
-        <UrlForm />
+        <UrlForm 
+          closeModal={() => setUrlFormOpen(false)}
+        />
       </Modal>
       <Navbar
         width={{base: 200}}

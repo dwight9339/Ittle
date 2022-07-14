@@ -1,10 +1,9 @@
-const { randomBytes } = require("crypto");
+import { randomBytes } from "crypto";
 
-const generateSlug = () => {
-  require('crypto').randomBytes(30, (err, buf) => {
-    if (err) throw err;
-    return buf.toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
-  });
+export default () => {
+  return randomBytes(4)
+    .toString('base64')
+    .replace(/\//g,'_')
+    .replace(/\+/g,'-')
+    .replace(/\=/g,'');
 }
-
-console.log(generateSlug());

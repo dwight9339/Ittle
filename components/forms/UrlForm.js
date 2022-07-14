@@ -1,7 +1,9 @@
 import {
   TextInput,
-  Card
+  Card,
+  Button
 } from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 
 export default ({ urlRec }) => {
@@ -37,6 +39,24 @@ export default ({ urlRec }) => {
             form.setFieldValue("redirect_url", e.currentTarget.value);
           }}
         />
+        <DatePicker
+          label="Start Date"
+          value={form.values.start_date}
+          onChange={(date) => {
+            form.setFieldValue("start_date", date);
+          }}
+        />
+        <DatePicker
+          label="End Date"
+          value={form.values.end_date}
+          onChange={(date) => {
+            form.setFieldValue("end_date", date);
+          }}
+          disabled={form.values.start_date}
+        />
+        <Button type="submit">
+          Submit
+        </Button>
       </form>
     </Card>
   )

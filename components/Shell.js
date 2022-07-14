@@ -5,7 +5,6 @@ import {
   Group
 } from "@mantine/core";
 import { useUser } from "@auth0/nextjs-auth0/dist/frontend";
-import NavbarContents from "./NavbarContents";
 
 export default ({ children }) => {
   const { user } = useUser();

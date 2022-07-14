@@ -2,15 +2,65 @@ import { useUser } from "@auth0/nextjs-auth0/dist/frontend"
 import { 
   Navbar,
   Button,
-  Modal
+  Modal,
+  Group
 } from "@mantine/core";
-import { useState } from "react";
+import { 
+  useEffect,
+  useState,
+  useMemo
+} from "react";
 import UrlForm from "/components/forms/UrlForm";
+import axios from "axios";
+import useSWR from "swr";
 
 export default () => {
   const { user } = useUser();
+  const { data: urls, error } = useSWR("/api/fetch-urls", async () => {
+    const res = await axios.get("/api/fetch-urls");
+    return res.data;
+  });
 
   const [urlFormOpen, setUrlFormOpen] = useState(false);
+  const [selectedUrl, setSelectedUrl] = useState();
+
+  const urlList = useMemo(() => {
+    if (!urls) return null;
+
+    return (
+      <div>
+        <h2>Your URLs</h2>
+        {
+          urls.map((url, i) => {
+            return (
+              <div 
+                key={i}
+                onClick={() => setSelectedUrl(() => url)}
+                style={{
+                  cursor: "pointer"
+                }}
+              >
+                <p>{url.name}</p>
+              </div>
+            )
+          })
+        }
+      </div>
+    );
+  });
+
+  const urlInfo = useMemo(() => {
+    if (!selectedUrl) return null;
+
+    return (
+      <div>
+        <h2>{selectedUrl.name}</h2>
+        <p>Short URL: https://shortiezzz.com/{selectedUrl._id}</p>
+        <p>Redirects to: {selectedUrl.redirect_url}</p>
+        <p>Clicked count: {selectedUrl.click_count}</p>
+      </div>
+    );
+  })
 
   return (
     <div>
@@ -22,7 +72,8 @@ export default () => {
           closeModal={() => setUrlFormOpen(false)}
         />
       </Modal>
-      <Navbar
+      <Group>
+       <Navbar
         width={{base: 200}}
       >
         <Button
@@ -30,11 +81,12 @@ export default () => {
         >
           New URL
         </Button>
-        <h1>
-          This is a navbar. It's catchy, you like it.
-        </h1>
+        {urlList}
       </Navbar>
-      User Home
+      <div>
+        {urlInfo} 
+      </div> 
+      </Group>
     </div>
   )
 }

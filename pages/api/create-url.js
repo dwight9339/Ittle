@@ -12,7 +12,7 @@ export default withApiAuthRequired(async (req, res) => {
   const redirectData = { ...req.body };
 
   redirectData._id = generateSlug();
-  redirectData.user_id = user.user_id;
+  redirectData.user_id = user.sub;
   redirectData.click_count = 0;
   
   console.log(JSON.stringify(redirectData));

@@ -2,7 +2,7 @@ import { AppShell, Header, Center, Group } from "@mantine/core";
 import { useUser } from "@auth0/nextjs-auth0/dist/frontend";
 
 export default ({ children }) => {
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
 
   return (
     <AppShell

@@ -1,22 +1,21 @@
 import Head from 'next/head'
-import { Container, Card, Stack } from '@mantine/core'
+import { useUser } from "@auth0/nextjs-auth0/dist/frontend";
+import LoggedOutHome from 'components/LoggedOutHome';
+import LoggedInHome from 'components/LoggedInHome';
 
 export default function Home() {
+  const { user } = useUser();
+
   return (
-    <Container>
+    <div>
       <Head>
         <title>Shortiezzz</title>
       </Head>
-      <Card
-        withBorder
-      >
-        <Stack align="center">
-          <h1>Welcome to Shortiezzz</h1>
-          <p>
-            Shortiezzz is a url shortening app that blah, blah, yak, yak, drivel, drivel, drivel.
-          </p>
-        </Stack>
-      </Card>
-    </Container>
+      {
+        user
+          ? <LoggedInHome />
+          : <LoggedOutHome />
+      }
+    </div>
   )
 }

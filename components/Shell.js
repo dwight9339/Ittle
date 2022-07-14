@@ -26,17 +26,6 @@ export default ({ children }) => {
           </Group>
         </Header>
       }
-      navbar={
-        user
-          ? <Navbar
-            width={{
-              base: 300
-            }}
-          >
-            <NavbarContents user={user}   />
-          </Navbar>
-          : null
-      }
     >
       { children }
     </AppShell>

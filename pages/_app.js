@@ -8,9 +8,7 @@ function MyApp({ Component, pageProps }) {
       <MantineProvider
 
       >
-        <Shell>
-          <Component {...pageProps} />
-        </Shell>
+        <Component {...pageProps} />
       </MantineProvider>
     </UserProvider>
   )

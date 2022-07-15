@@ -8,7 +8,7 @@ import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import axios from "axios";
 
-export default ({ urlRec, closeModal }) => {
+const UrlForm = ({ urlRec, closeModal }) => {
   const form = useForm({
     initialValues: urlRec
       ? {
@@ -75,3 +75,5 @@ export default ({ urlRec, closeModal }) => {
     </Card>
   )
 }
+
+export default UrlForm;

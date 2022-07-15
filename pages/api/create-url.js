@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 import generateSlug from "utils/generateSlug";
 
-export default withApiAuthRequired(async (req, res) => {
+const createUrl = withApiAuthRequired(async (req, res) => {
   if (req.method !== "POST") {
     return res.status(401).send();
   }
@@ -28,3 +28,5 @@ export default withApiAuthRequired(async (req, res) => {
     res.status(500).send("Unable to insert record");
   }
 });
+
+export default createUrl;

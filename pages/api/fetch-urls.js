@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
-export default withApiAuthRequired(async (req, res) => {
+const fetchUrl = withApiAuthRequired(async (req, res) => {
   const { user } = getSession(req, res);
   const client = new MongoClient(process.env.MONGODB_URI);
   
@@ -17,3 +17,5 @@ export default withApiAuthRequired(async (req, res) => {
     res.status(500).send();
   }
 });
+
+export default fetchUrl;

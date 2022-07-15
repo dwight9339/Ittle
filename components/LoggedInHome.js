@@ -14,7 +14,7 @@ import UrlForm from "/components/forms/UrlForm";
 import axios from "axios";
 import useSWR from "swr";
 
-export default () => {
+const LoggedInHome = () => {
   const { user } = useUser();
   const { data: urls, error } = useSWR("/api/fetch-urls", async () => {
     const res = await axios.get("/api/fetch-urls");
@@ -90,3 +90,5 @@ export default () => {
     </div>
   )
 }
+
+export default LoggedInHome;

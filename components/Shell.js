@@ -1,13 +1,12 @@
 import { 
   AppShell, 
   Header, 
-  Navbar, 
   Group
 } from "@mantine/core";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/dist/frontend";
 
-export default ({ children }) => {
+const Shell = ({ children }) => {
   const { user } = useUser();
 
   return (
@@ -31,3 +30,5 @@ export default ({ children }) => {
     </AppShell>
   )
 }
+
+export default Shell;

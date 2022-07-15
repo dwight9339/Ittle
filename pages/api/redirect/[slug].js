@@ -17,7 +17,7 @@ const applyCors = (req, res) => {
   })
 }
 
-export default async (req, res) => {
+const slugRedirect = async (req, res) => {
   await applyCors(req, res);
 
   const { slug } = req.query;
@@ -31,3 +31,5 @@ export default async (req, res) => {
     res.status(500).send("Server error");
   }
 }
+
+export default slugRedirect;

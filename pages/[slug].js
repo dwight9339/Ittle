@@ -4,7 +4,7 @@ import {
 } from "@mantine/core";
 import fetchRedirect from "utils/fetchRedirect";
 
-export default ({ redirect }) => {
+const RedirectPage = ({ redirect }) => {
   return (
     <div>
       <Modal
@@ -38,3 +38,5 @@ export const getServerSideProps = async (context) => {
     }
   }
 }
+
+export default RedirectPage;

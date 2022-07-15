@@ -4,7 +4,7 @@ import LoggedOutHome from 'components/LoggedOutHome';
 import LoggedInHome from 'components/LoggedInHome';
 import Shell from 'components/Shell';
 
-export default function Home() {
+const Home = () => {
   const { user } = useUser();
 
   return (
@@ -22,3 +22,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;

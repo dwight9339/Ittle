@@ -1,7 +1,7 @@
 import { Container, Card, Stack } from '@mantine/core'
 
 
-export default () => {
+const LoggedOutHome = () => {
   return (
     <Container>
       <Card
@@ -17,3 +17,5 @@ export default () => {
     </Container>
   );
 }
+
+export default LoggedOutHome;

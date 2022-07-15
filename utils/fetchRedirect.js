@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-export default async (slug) => { 
+const fetchRedirect = async (slug) => { 
   const client = new MongoClient(process.env.MONGODB_URI);
   const db = client.db(process.env.MONGODB_DB);
   const coll = db.collection("redirects");
@@ -9,3 +9,5 @@ export default async (slug) => {
 
   return fetchResult;
 }
+
+export default fetchRedirect

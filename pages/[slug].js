@@ -17,6 +17,12 @@ export default ({ redirect }) => {
       </Modal>
       <iframe
         src={redirect.redirect_url}
+        width="100%"
+        height="900"
+        allowFullScreen
+        style={{
+          border: "none"
+        }}
       />
     </div>
   )

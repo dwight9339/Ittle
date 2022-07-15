@@ -4,6 +4,7 @@ import {
   Navbar, 
   Group
 } from "@mantine/core";
+import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/dist/frontend";
 
 export default ({ children }) => {
@@ -18,8 +19,8 @@ export default ({ children }) => {
             <h1>Shortiezzz</h1>
             {
               user 
-                ? <a href="/api/auth/logout">Logout</a>
-                : <a href="/api/auth/login">Login</a>
+                ? <Link href="/api/auth/logout"><a>Logout</a></Link>
+                : <Link href="/api/auth/login"><a>Login</a></Link>
             }
             
           </Group>

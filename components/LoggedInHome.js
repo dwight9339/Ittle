@@ -47,7 +47,7 @@ const LoggedInHome = () => {
         }
       </div>
     );
-  });
+  }, [urls]);
 
   const urlInfo = useMemo(() => {
     if (!selectedUrl) return null;
@@ -60,7 +60,7 @@ const LoggedInHome = () => {
         <p>Clicked count: {selectedUrl.click_count}</p>
       </div>
     );
-  })
+  }, [selectedUrl]);
 
   return (
     <div>

@@ -11,7 +11,7 @@ const applyCors = (req, res) => {
       if (result instanceof Error) {
         return reject(result)
       }
-
+      console.log("Passed CORS");
       return resolve(result)
     })
   })
@@ -21,10 +21,10 @@ const slugRedirect = async (req, res) => {
   await applyCors(req, res);
 
   const { slug } = req.query;
-  
+  console.log(`slug: ${slug}`);
   try {
     const redirect = await fetchRedirect(slug);
-
+    
     res.redirect(redirect.redirect_url);
   } catch(err) {
     console.error(err);

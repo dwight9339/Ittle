@@ -1,7 +1,7 @@
 import fetchRedirect from "utils/fetchRedirect";
-import CORS from "cors";
+import Cors from "cors";
 
-const cors = CORS({
+const cors = Cors({
   methods: ["GET", "HEAD"]
 });
 

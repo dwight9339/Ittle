@@ -1,7 +1,7 @@
 import fetchRedirect from "utils/fetchRedirect";
-import CORS from "cors";
+import Cors from "cors";
 
-const cors = CORS({
+const cors = Cors({
   methods: ["GET", "HEAD"]
 });
 
@@ -11,7 +11,6 @@ const applyCors = (req, res) => {
       if (result instanceof Error) {
         return reject(result)
       }
-
       return resolve(result)
     })
   })
@@ -21,7 +20,6 @@ const slugRedirect = async (req, res) => {
   await applyCors(req, res);
 
   const { slug } = req.query;
-  
   try {
     const redirect = await fetchRedirect(slug);
 

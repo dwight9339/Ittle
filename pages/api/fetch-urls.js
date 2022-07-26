@@ -2,6 +2,10 @@ import { MongoClient } from "mongodb";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
 const fetchUrl = withApiAuthRequired(async (req, res) => {
+  if (req.method !== "GET") {
+    return res.status(405).send();
+  }
+
   const { user } = getSession(req, res);
   const client = new MongoClient(process.env.MONGODB_URI);
   

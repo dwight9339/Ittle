@@ -4,7 +4,7 @@ import generateSlug from "utils/generateSlug";
 
 const createUrl = withApiAuthRequired(async (req, res) => {
   if (req.method !== "POST") {
-    return res.status(401).send();
+    return res.status(405).send();
   }
 
   const { user } = getSession(req, res);

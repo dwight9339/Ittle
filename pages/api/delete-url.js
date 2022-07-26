@@ -3,7 +3,7 @@ import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 
 const deleteUrl = withApiAuthRequired(async (req, res) => {
   if (req.method !== "POST") {
-    return res.status(401).send();
+    return res.status(405).send();
   }
   const { slug } = req.body;
   const client = new MongoClient(process.env.MONGODB_URI);

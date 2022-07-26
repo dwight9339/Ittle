@@ -24,6 +24,16 @@ const LoggedInHome = () => {
   const [urlFormOpen, setUrlFormOpen] = useState(false);
   const [selectedUrl, setSelectedUrl] = useState();
 
+  const deleteUrl = async (slugToDelete) => {
+    try {
+      await axios.post("/api/delete-url", {
+        slug: slugToDelete
+      });
+    } catch(err) {
+      console.error(err);
+    } 
+  };
+
   const urlList = useMemo(() => {
     if (!urls) return null;
 
@@ -58,6 +68,9 @@ const LoggedInHome = () => {
         <p>Short URL: https://shortiezzz.com/{selectedUrl._id}</p>
         <p>Redirects to: {selectedUrl.redirect_url}</p>
         <p>Clicked count: {selectedUrl.click_count}</p>
+        <Button
+          onClick={() => deleteUrl(selectedUrl._id)}
+        >Delete</Button>
       </div>
     );
   }, [selectedUrl]);

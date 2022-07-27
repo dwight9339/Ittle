@@ -17,6 +17,10 @@ const applyCors = (req, res) => {
 }
 
 const slugRedirect = async (req, res) => {
+  if (req.method !== "GET") {
+    return res.status(405).send();
+  }
+
   await applyCors(req, res);
 
   const { slug } = req.query;

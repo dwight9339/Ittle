@@ -18,10 +18,10 @@ const createUrl = withApiAuthRequired(async (req, res) => {
   
   try {
     const db = client.db(process.env.MONGODB_DB);
-    const redirects = db.collection("redirects");
+    const redirects = db.collection(process.env.MONGODB_COLL_NAME_REDIRECTS);
     await redirects.insertOne(redirectData);
     
-    res.status(200).send();
+    res.status(200).json({slug: redirectData._id}).send();
   } catch(err) {
     if (err instanceof MongoServerError && err.code === 11000) { 
       // Key collision error, reissue request

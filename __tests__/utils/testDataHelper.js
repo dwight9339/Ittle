@@ -1,5 +1,10 @@
-import { MongoClient, MongoServerError } from "mongodb";
+import { MongoClient } from "mongodb";
 import { randomBytes } from "crypto";
+
+export const testUrlBaseName = "Test URL";
+export const testUrlRedirectUrl = "https://google.com";
+export const testUrlStartDate = new Date("0").toDateString();
+export const testUrlEndDate = new Date("20").toDateString();
 
 export const createOneRedirect = async () => {
   const client = new MongoClient(process.env.MONGODB_URI);
@@ -13,11 +18,14 @@ export const createOneRedirect = async () => {
     const db = client.db(process.env.MONGODB_DB);
     const coll = db.collection(process.env.MONGODB_COLL_NAME_REDIRECTS);
     await coll.insertOne({
-      name: "Test URL",
       _id: slug,
-      start_date: new Date().toString(),
-      end_date: (new Date() + 7).toString()
+      name: testUrlBaseName,
+      redirect_url: testUrlRedirectUrl,
+      start_date: testUrlStartDate,
+      end_date: testUrlEndDate
     });
+
+    return slug;
   } catch(err) {
     console.error(err);
   } finally {
@@ -37,10 +45,10 @@ export const createMultipleRedirects = async (numUrls) => {
   for (let i = 0; i < numUrls; i++) {
     recs.push({
       _id: baseSlug + `${i}`,
-      name: `Test URL ${i + 1}`,
-      redirect_url: "https://google.com",
-      start_date: new Date().toDateString(),
-      end_date: (new Date() + 7).toDateString()
+      name: `${testUrlBaseName} ${i + 1}`,
+      redirect_url: testUrlRedirectUrl,
+      start_date: testUrlStartDate,
+      end_date: testUrlEndDate
     });
   }
   
@@ -48,6 +56,7 @@ export const createMultipleRedirects = async (numUrls) => {
     const db = client.db(process.env.MONGODB_DB);
     const coll = db.collection(process.env.MONGODB_COLL_NAME_REDIRECTS);
     await coll.insertMany(recs);
+    
     return baseSlug;
   } catch(err) {
     console.error(err);

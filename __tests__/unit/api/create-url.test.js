@@ -1,7 +1,6 @@
 /** 
  * @jest-environment node 
  */ 
-import { rewrites } from "next.config";
 import { createMocks } from "node-mocks-http";
 import createUrl from "pages/api/create-url";
 import loginTestUser from "__tests__/utils/loginTestUser";

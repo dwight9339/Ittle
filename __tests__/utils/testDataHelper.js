@@ -50,7 +50,7 @@ export const createMultipleRedirects = async (req, res, numUrls) => {
     recs.push({
       _id: baseSlug + `${i}`,
       user_id: user.sub,
-      name: `${testUrlBaseName} ${i + 1}`,
+      name: `${testUrlBaseName} ${i}`,
       redirect_url: testUrlRedirectUrl,
       start_date: testUrlStartDate,
       end_date: testUrlEndDate
@@ -85,6 +85,22 @@ export const getRedirect = async (slug) => {
     client.close();
   }
 } 
+
+export const verifyRedirects = async (slugs) => {
+  const client = new MongoClient(process.env.MONGODB_URI);
+  
+  try {
+    const db = client.db(process.env.MONGODB_DB);
+    const coll = db.collection(process.env.MONGODB_COLL_NAME_REDIRECTS);
+    const count = await coll.countDocuments({_id: { $in: slugs }});
+    
+    return count === slugs.length;
+  } catch(err) {
+    console.error(err);
+  } finally {
+    client.close();
+  }
+}  
 
 export const getAvailableSlug = async (slug) => {
   const client = new MongoClient(process.env.MONGODB_URI);

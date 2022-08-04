@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "unit-tests": "jest __tests__/unit",
+    "unit-tests": "jest __tests__/unit -i",
     "start-test-server": "npm run dev",
     "unit-tests-with-server": "start-server-and-test start-test-server http://localhost:3000 unit-tests"
   },

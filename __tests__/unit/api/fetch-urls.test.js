@@ -6,7 +6,8 @@
  import { 
    getRedirect,
    clearAllRedirects,
-   createOneRedirect
+   createMultipleRedirects,
+   verifyRedirects
  } from "__tests__/utils/testDataHelper";
  import fetchUrls from "pages/api/fetch-urls";
  
@@ -41,4 +42,29 @@
  
      expect(res.statusCode).toBe(405);
    });
+
+   test("Returns redirect records associated with user", async () => {
+    const { req, res } = createMocks({ 
+      method: "GET",
+      headers: {
+        cookie
+      }
+    });
+    const numRedirects = 5;
+    const baseSlug = await createMultipleRedirects(req, res, numRedirects);
+    const slugs = [...Array(numRedirects).keys()].map((i) => baseSlug + `${i}`);
+
+    const redirectsCreated = await verifyRedirects(slugs);
+
+    expect(redirectsCreated).toBeTruthy();
+
+    await fetchUrls(req, res);
+
+    const redirects = res._getData();
+    expect(Array.isArray(redirects)).toBeTruthy();
+    
+    slugs.forEach((slug) => {
+      expect(redirects.find((redirect) => redirect._id === slug)).toBeDefined();
+    });
+  });
  });

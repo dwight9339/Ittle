@@ -19,7 +19,7 @@ export const createOneRedirect = async (req, res) => {
   try {
     const db = client.db(process.env.MONGODB_DB);
     const coll = db.collection(process.env.MONGODB_COLL_NAME_REDIRECTS);
-    await coll.insertOne({
+    coll.insertOne({
       _id: slug,
       user_id: user.sub,
       name: testUrlBaseName,
@@ -60,7 +60,7 @@ export const createMultipleRedirects = async (req, res, numUrls) => {
   try {
     const db = client.db(process.env.MONGODB_DB);
     const coll = db.collection(process.env.MONGODB_COLL_NAME_REDIRECTS);
-    await coll.insertMany(recs);
+    coll.insertMany(recs);
     
     return baseSlug;
   } catch(err) {

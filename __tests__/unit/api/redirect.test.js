@@ -44,4 +44,28 @@ describe("redirect/[slug] API endpoint", () => {
     expect(res.statusCode).toBe(302);
     expect(res._getRedirectUrl()).toEqual(redirect.redirect_url);
   });
+
+  test("Returns redirect records associated with user", async () => {
+    const { req, res } = createMocks({method: "GET", query: { slug: testSlug }});
+    const redirect = await getRedirect(testSlug);
+
+    expect(redirect).not.toBeNull();
+
+    const p = await slugRedirect(req, res);
+
+    expect(res.statusCode).toBe(302);
+    expect(res._getRedirectUrl()).toEqual(redirect.redirect_url);
+  });
+
+  test("Redirects user to invalid redirect page if slug not found", async () => {
+    const { req, res } = createMocks({method: "GET", query: { slug: "invalid_slug" }});
+    const redirect = await getRedirect(testSlug);
+
+    expect(redirect).not.toBeNull();
+
+    const p = await slugRedirect(req, res);
+
+    expect(res.statusCode).toBe(302);
+    expect(res._getRedirectUrl()).toEqual("/invalid_redirect");
+  });
  });

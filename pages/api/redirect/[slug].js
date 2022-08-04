@@ -27,7 +27,11 @@ const slugRedirect = async (req, res) => {
   try {
     const redirect = await fetchRedirect(slug);
 
-    res.redirect(redirect.redirect_url);
+    if (redirect) {
+      res.redirect(redirect.redirect_url);
+    } else {
+      res.redirect("/invalid_redirect");
+    }
   } catch(err) {
     console.error(err);
     res.status(500).send("Server error");

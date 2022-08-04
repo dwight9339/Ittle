@@ -30,7 +30,7 @@ const slugRedirect = async (req, res) => {
     if (redirect) {
       res.redirect(redirect.redirect_url);
     } else {
-      res.redirect("/invalid_redirect");
+      res.redirect("/invalid_url");
     }
   } catch(err) {
     console.error(err);

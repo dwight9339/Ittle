@@ -17,13 +17,21 @@ const applyCors = (req, res) => {
 }
 
 const slugRedirect = async (req, res) => {
+  if (req.method !== "GET") {
+    return res.status(405).send();
+  }
+
   await applyCors(req, res);
 
   const { slug } = req.query;
   try {
     const redirect = await fetchRedirect(slug);
 
-    res.redirect(redirect.redirect_url);
+    if (redirect) {
+      res.redirect(redirect.redirect_url);
+    } else {
+      res.redirect("/invalid_url");
+    }
   } catch(err) {
     console.error(err);
     res.status(500).send("Server error");

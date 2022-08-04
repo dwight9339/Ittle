@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "unit-tests": "jest __tests__/unit -i",
+    "start-test-server": "npm run dev",
+    "unit-tests-with-server": "start-server-and-test start-test-server http://localhost:3000 unit-tests"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.9.1",
@@ -24,11 +27,15 @@
     "swr": "^1.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.24.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.2",
     "jest": "^28.1.3",
-    "jest-environment-jsdom": "^28.1.3"
+    "jest-environment-jsdom": "^28.1.3",
+    "node-mocks-http": "^1.11.0",
+    "playwright": "^1.24.0",
+    "start-server-and-test": "^1.14.0"
   }
 }

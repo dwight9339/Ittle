@@ -43,6 +43,7 @@ const UrlForm = ({ urlRec, closeModal }) => {
           onChange={(e) => {
             form.setFieldValue("name", e.currentTarget.value);
           }}
+          data-testid="urlNameField"
         />
         <TextInput
           label="Redirect URL"
@@ -50,6 +51,7 @@ const UrlForm = ({ urlRec, closeModal }) => {
           onChange={(e) => {
             form.setFieldValue("redirect_url", e.currentTarget.value);
           }}
+          data-testid="redirectUrlField"
         />
         <DatePicker
           label="Start Date"
@@ -57,6 +59,7 @@ const UrlForm = ({ urlRec, closeModal }) => {
           onChange={(date) => {
             form.setFieldValue("start_date", date);
           }}
+          data-testid="startDateField"
         />
         <DatePicker
           label="End Date"
@@ -65,9 +68,13 @@ const UrlForm = ({ urlRec, closeModal }) => {
             form.setFieldValue("end_date", date);
           }}
           disabled={!form.values.start_date}
+          data-testid="endDateField"
         />
         <Group>
-          <Button type="submit">
+          <Button 
+            type="submit"
+            data-testid="urlFormSubmitButton"
+          >
             Submit
           </Button> 
         </Group>

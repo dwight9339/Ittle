@@ -1,2 +1,2 @@
-# Shortiezzz
-A URL shortening service... with ATTITUDE!
+# Ittle
+A URL shortening service

@@ -65,7 +65,7 @@ const LoggedInHome = () => {
     return (
       <div>
         <h2>{selectedUrl.name}</h2>
-        <p>Short URL: https://shortiezzz.com/{selectedUrl._id}</p>
+        <p>Short URL: https://l.ittle.xyz/{selectedUrl._id}</p>
         <p>Redirects to: {selectedUrl.redirect_url}</p>
         <p>Clicked count: {selectedUrl.click_count}</p>
         <Button

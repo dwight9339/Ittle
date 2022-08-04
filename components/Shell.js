@@ -15,13 +15,12 @@ const Shell = ({ children }) => {
         <Header height={60}>
           <Group position="apart">
             <div></div>
-            <h1>Shortiezzz</h1>
+            <h1>Ittle</h1>
             {
               user 
                 ? <Link href="/api/auth/logout"><a>Logout</a></Link>
                 : <Link href="/api/auth/login"><a>Login</a></Link>
-            }
-            
+            } 
           </Group>
         </Header>
       }

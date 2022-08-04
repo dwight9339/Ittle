@@ -21,7 +21,7 @@
    await clearAllRedirects();
  });
  
- describe("delete-url API endpoint", () => {
+ describe("fetch-urls API endpoint", () => {
    test("Doesn't accept unauthorized requests", async () => {
      const { req, res } = createMocks({ method: "POST" });
  
